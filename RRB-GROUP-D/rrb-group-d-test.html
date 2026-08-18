@@ -1,0 +1,822 @@
+<!doctype html>
+<html lang="te">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>RRB Group D Online Test</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:Arial,"Noto Sans Telugu",sans-serif;
+background:#f3f6fb;
+color:#172033
+}
+header{
+background:linear-gradient(135deg,#123b8f,#2563eb);
+color:white;
+padding:20px 15px;
+text-align:center
+}
+.container{
+max-width:900px;
+margin:auto;
+padding:15px
+}
+.card{
+background:white;
+padding:20px;
+margin:15px 0;
+border-radius:15px;
+box-shadow:0 4px 15px #0001
+}
+input{
+width:100%;
+padding:13px;
+border:1px solid #ccd4df;
+border-radius:8px;
+font-size:16px;
+margin:8px 0 15px
+}
+button{
+border:0;
+border-radius:9px;
+padding:12px 18px;
+background:#2563eb;
+color:white;
+font-weight:bold;
+cursor:pointer;
+font-size:15px
+}
+button:hover{opacity:.9}
+.start{
+background:#198754;
+width:100%
+}
+.submit{
+background:#dc3545;
+width:100%;
+font-size:17px
+}
+.option{
+display:block;
+background:#f5f7fa;
+padding:12px;
+margin:9px 0;
+border-radius:9px;
+cursor:pointer;
+border:1px solid #e1e5eb
+}
+.option:hover{
+background:#e8f0ff
+}
+.topbar{
+position:sticky;
+top:0;
+z-index:10;
+background:white;
+padding:12px;
+border-radius:12px;
+box-shadow:0 3px 12px #0002;
+margin-bottom:15px
+}
+.toprow{
+display:flex;
+justify-content:space-between;
+gap:10px;
+flex-wrap:wrap
+}
+.namebox{
+font-weight:bold;
+color:#173b8f
+}
+.timer{
+font-weight:bold;
+color:#dc3545;
+font-size:18px
+}
+.qno{
+background:#173b8f;
+color:white;
+padding:6px 10px;
+border-radius:20px;
+display:inline-block;
+font-size:13px
+}
+.question{
+font-size:17px;
+font-weight:bold;
+line-height:1.6
+}
+.telugu{
+margin-top:5px;
+color:#333;
+line-height:1.6
+}
+.result{
+background:#eef6ff;
+border-radius:12px;
+padding:18px;
+margin-bottom:20px
+}
+.score{
+font-size:28px;
+font-weight:bold;
+color:#173b8f
+}
+.correct{
+border-left:5px solid #198754;
+padding:12px;
+background:#effaf3;
+margin:12px 0
+}
+.wrong{
+border-left:5px solid #dc3545;
+padding:12px;
+background:#fff1f1;
+margin:12px 0
+}
+.explain{
+background:#f8f9fa;
+padding:12px;
+margin-top:10px;
+border-radius:8px;
+line-height:1.6
+}
+.hidden{display:none}
+.small{
+color:#667085;
+font-size:14px
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🚆 RRB GROUP D</h1>
+<p>ONLINE TEST | ఆన్‌లైన్ పరీక్ష</p>
+</header>
+
+<div class="container">
+
+<!-- START SCREEN -->
+<div id="startScreen" class="card">
+
+<h2>📝 RRB Group D Online Test</h2>
+
+<p><b>Questions:</b> 25</p>
+<p><b>Marks:</b> 25</p>
+<p><b>Time:</b> 20 Minutes</p>
+<p><b>Correct Answer:</b> +1 Mark</p>
+<p><b>Wrong Answer:</b> −0.33 Mark</p>
+<p><b>Not Answered:</b> 0 Mark</p>
+
+<label>
+👨‍🎓 Student Name / విద్యార్థి పేరు
+</label>
+
+<input id="studentName"
+placeholder="Enter Student Name / విద్యార్థి పేరు">
+
+<button class="start" onclick="startExam()">
+🚀 Start Exam / పరీక్ష ప్రారంభించండి
+</button>
+
+</div>
+
+
+<!-- EXAM SCREEN -->
+<div id="examScreen" class="hidden">
+
+<div class="topbar">
+
+<div class="toprow">
+
+<div class="namebox">
+👨‍🎓 Student:
+<span id="displayName"></span>
+</div>
+
+<div class="timer">
+⏱️ Time:
+<span id="timer">20:00</span>
+</div>
+
+</div>
+
+</div>
+
+<div id="questions"></div>
+
+<button class="submit" onclick="submitExam(false)">
+📊 Submit Test / పరీక్ష సమర్పించండి
+</button>
+
+</div>
+
+
+<!-- RESULT SCREEN -->
+<div id="resultScreen" class="hidden">
+
+<div class="card">
+
+<h2>📊 Test Result / పరీక్ష ఫలితం</h2>
+
+<div class="result">
+
+<p>
+👨‍🎓 <b>Student Name:</b>
+<span id="resultName"></span>
+</p>
+
+<p>
+📊 <b>Score:</b>
+<span class="score" id="resultScore"></span>
+</p>
+
+<p>
+📈 <b>Percentage:</b>
+<span id="resultPercentage"></span>
+</p>
+
+<p>
+❌ <b>Wrong Answers:</b>
+<span id="resultWrong"></span>
+</p>
+
+<p>
+✅ <b>Correct Answers:</b>
+<span id="resultCorrect"></span>
+</p>
+
+<p>
+⭕ <b>Not Answered:</b>
+<span id="resultUnanswered"></span>
+</p>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>📖 Answers & Explanations</h2>
+
+<div id="review"></div>
+
+</div>
+
+<button onclick="location.reload()">
+🔄 New Test / కొత్త పరీక్ష
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   QUESTIONS
+========================= */
+
+const questions = [
+
+{
+q:"When a zinc rod is placed in aqueous copper sulphate solution, what happens?",
+te:"ఒక జింక్ రాడ్‌ను సజల కాపర్ సల్ఫేట్ ద్రావణంలో ఉంచినప్పుడు ఏమి జరుగుతుంది?",
+options:[
+"The temperature of solution decreases — ద్రావణం యొక్క ఉష్ణోగ్రత తగ్గుతుంది",
+"Heat is required to start the reaction — చర్యను ప్రారంభించడానికి ఉష్ణం అవసరం",
+"The blue colour of copper sulphate solution fades — కాపర్ సల్ఫేట్ ద్రావణం యొక్క నీలం రంగు వెలిసిపోతుంది",
+"No chemical change occurs — ఎట్టి రసాయన మార్పూ జరగదు"
+],
+answer:2,
+exEn:"Zinc is more reactive than copper. Therefore, zinc displaces copper from copper sulphate solution.",
+exTe:"జింక్, కాపర్ కంటే ఎక్కువ క్రియాశీలమైనది. కాబట్టి జింక్ కాపర్ సల్ఫేట్ నుండి కాపర్‌ను స్థానభ్రంశం చేస్తుంది."
+},
+
+{
+q:"Which option best describes the term culture fishery?",
+te:"‘Culture fishery’ అనే పదాన్ని బాగా వివరించేది ఏది?",
+options:[
+"Fish farming — చేపల పెంపకం",
+"Catching fish from natural resources — సహజ వనరుల నుండి చేపలను పట్టుకోవడం",
+"Catching fish from sea water — సముద్ర నీటి నుండి చేపలను పట్టుకోవడం",
+"Catching fish from artificial resources — కృత్రిమ వనరుల నుండి చేపలను పట్టుకోవడం"
+],
+answer:0,
+exEn:"Culture fishery refers to fish farming or the controlled breeding and rearing of fish.",
+exTe:"Culture fishery అంటే చేపలను నియంత్రిత పద్ధతిలో పెంచడం లేదా చేపల పెంపకం."
+},
+
+{
+q:"A coil has a resistance of 44 Ω and is connected to a 220 V supply. What power does it consume?",
+te:"ఒక కాయిల్ నిరోధకత 44 Ω. అది 220 V సరఫరాకు అనుసంధానించబడితే ఎంత పవర్‌ను వినియోగిస్తుంది?",
+options:[
+"110 W — 110 వాట్",
+"0.2 W — 0.2 వాట్",
+"5 W — 5 వాట్",
+"1100 W — 1100 వాట్"
+],
+answer:3,
+exEn:"Power P = V²/R = 220²/44 = 1100 W.",
+exTe:"P = V²/R సూత్రం ప్రకారం P = 220²/44 = 1100 W."
+},
+
+{
+q:"Asthma mainly affects which parts of the respiratory system?",
+te:"ఉబ్బసం (ఆస్తమా) ప్రధానంగా శ్వాసకోశ వ్యవస్థలోని ఏ భాగాలను ప్రభావితం చేస్తుంది?",
+options:[
+"Bronchi and bronchioles — ఫుఫుసనాళాలు మరియు శ్వాసనాళికలు",
+"Trachea — వాయునాళం",
+"Alveoli — వాయుగోణులు",
+"Diaphragm — ఉదరవితానం"
+],
+answer:0,
+exEn:"Asthma mainly causes narrowing and inflammation of the bronchi and bronchioles.",
+exTe:"ఆస్తమాలో ప్రధానంగా బ్రాంకై మరియు బ్రాంకియోల్స్‌లో వాపు, సంకోచం ఏర్పడుతుంది."
+},
+
+{
+q:"Which type of cell division produces haploid gametes from diploid cells?",
+te:"ద్వయస్థితిక కణాల నుండి ఏకస్థితిక బీజకణాలను ఏర్పరచే కణ విభజన ఏది?",
+options:[
+"Meiosis — క్షయకరణ విభజన",
+"Amitosis — అసమవిభజన",
+"Mitosis — సమవిభజన",
+"Binary fission — ద్విదావిచ్ఛిత్తి"
+],
+answer:0,
+exEn:"Meiosis reduces the chromosome number by half and produces haploid gametes.",
+exTe:"క్షయకరణ విభజనలో క్రోమోజోమ్ సంఖ్య సగానికి తగ్గి ఏకస్థితిక బీజకణాలు ఏర్పడతాయి."
+},
+
+{
+q:"What causes the fractional atomic mass of chlorine?",
+te:"క్లోరిన్ యొక్క భిన్నాత్మక పరమాణు ద్రవ్యరాశికి కారణం ఏమిటి?",
+options:[
+"Presence of isotopes — ఐసోటోపుల ఉనికి",
+"Experimental error — ప్రయోగాత్మక లోపం",
+"Presence of ions — అయాన్ల ఉనికి",
+"Compound nature — సమ్మేళన స్వభావం"
+],
+answer:0,
+exEn:"Chlorine exists mainly as different isotopes, so its average atomic mass is fractional.",
+exTe:"క్లోరిన్ వివిధ ఐసోటోపుల రూపంలో ఉండటం వల్ల దాని సగటు పరమాణు ద్రవ్యరాశి భిన్నంగా ఉంటుంది."
+},
+
+{
+q:"Which statement about work done is correct?",
+te:"చేసిన పని గురించి క్రింది ప్రకటనలలో ఏది సరైనది?",
+options:[
+"Work is always negative — పని ఎల్లప్పుడూ ఋణాత్మకంగా ఉంటుంది",
+"Work may be positive or negative depending on the direction of force — బలం దిశను బట్టి పని ధనాత్మకంగా లేదా ఋణాత్మకంగా ఉండవచ్చు",
+"Work does not depend on force or displacement — పని బలం లేదా స్థానభ్రంశంపై ఆధారపడదు",
+"Work is always positive — పని ఎల్లప్పుడూ ధనాత్మకంగా ఉంటుంది"
+],
+answer:1,
+exEn:"Work can be positive, negative or zero depending on the angle between force and displacement.",
+exTe:"బలం మరియు స్థానభ్రంశం మధ్య కోణాన్ని బట్టి పని ధనాత్మకంగా, ఋణాత్మకంగా లేదా సున్నాగా ఉండవచ్చు."
+},
+
+{
+q:"A sound wave has a frequency of 50 Hz. What time does it take to complete one wave?",
+te:"ఒక ధ్వని తరంగం పౌనఃపున్యం 50 Hz. ఒక పూర్తి తరంగాన్ని పూర్తి చేయడానికి ఎంత సమయం పడుతుంది?",
+options:[
+"0.2 s — 0.2 సెకన్లు",
+"0.02 s — 0.02 సెకన్లు",
+"5 s — 5 సెకన్లు",
+"50 s — 50 సెకన్లు"
+],
+answer:1,
+exEn:"Time period T = 1/f = 1/50 = 0.02 s.",
+exTe:"కాలావధి T = 1/f = 1/50 = 0.02 సెకన్లు."
+},
+
+{
+q:"How is the power of a lens defined?",
+te:"ఒక కటకం యొక్క పవర్‌ను ఎలా నిర్వచిస్తారు?",
+options:[
+"Ratio of image distance and object distance — ప్రతిబింబ దూరం మరియు వస్తువు దూరం నిష్పత్తి",
+"Reciprocal of focal length in metres — మీటర్లలో నాభ్యంతరం యొక్క వ్యుత్క్రమం",
+"Square of focal length — నాభ్యంతరం యొక్క వర్గం",
+"Product of focal length and refractive index — నాభ్యంతరం మరియు వక్రీభవన గుణకం లబ్ధం"
+],
+answer:1,
+exEn:"Power of a lens P = 1/f, where f is focal length in metres.",
+exTe:"కటకం పవర్ P = 1/f. ఇక్కడ f మీటర్లలో నాభ్యంతరం."
+},
+
+{
+q:"Which is NOT used to express the concentration of a solution?",
+te:"ఒక ద్రావణం యొక్క గాఢతను వ్యక్తీకరించడానికి క్రింది వాటిలో ఏది ఉపయోగించబడదు?",
+options:[
+"Mass by mass percentage — మాస్ బై మాస్ శాతం",
+"Volume by volume percentage — వాల్యూమ్ బై వాల్యూమ్ శాతం",
+"Mass by volume percentage — మాస్ బై వాల్యూమ్ శాతం",
+"Volume by mass percentage — వాల్యూమ్ బై మాస్ శాతం"
+],
+answer:3,
+exEn:"The standard school-level methods include mass/mass, volume/volume and mass/volume percentages.",
+exTe:"పాఠశాల స్థాయిలో ద్రావణ గాఢతకు మాస్/మాస్, వాల్యూమ్/వాల్యూమ్ మరియు మాస్/వాల్యూమ్ శాతాలు ఉపయోగిస్తారు."
+},
+
+{
+q:"Which is an example of uniform circular motion?",
+te:"సమ వృత్తాకార చలనానికి ఉదాహరణ ఏది?",
+options:[
+"A fan blade rotating at constant speed — స్థిర వేగంతో తిరిగే ఫ్యాన్ బ్లేడ్",
+"A train moving on a track — ట్రాక్‌పై కదులుతున్న రైలు",
+"A ball thrown vertically upward — నిట్టనిలువుగా పైకి విసిరిన బంతి",
+"A car accelerating on a road — దారిలో త్వరణంతో దూసుకుపోతున్న కారు"
+],
+answer:0,
+exEn:"A point on a fan blade moving at constant speed follows a circular path.",
+exTe:"స్థిర వేగంతో తిరిగే ఫ్యాన్ బ్లేడ్‌పై ఒక బిందువు వృత్తాకార మార్గంలో కదులుతుంది."
+},
+
+{
+q:"An object is dropped from a height. If it falls for 3.0 s and g = 10 m/s², what is its final velocity?",
+te:"ఒక వస్తువును ఎత్తు నుండి పడవేశారు. అది 3.0 s పడితే, g = 10 m/s² అయితే తుది వేగం ఎంత?",
+options:[
+"10 m/s — 10 మీ/సె",
+"40 m/s — 40 మీ/సె",
+"30 m/s — 30 మీ/సె",
+"20 m/s — 20 మీ/సె"
+],
+answer:2,
+exEn:"For an object starting from rest, v = u + gt = 0 + 10×3 = 30 m/s.",
+exTe:"విశ్రాంతి నుండి పడితే v = u + gt = 0 + 10×3 = 30 మీ/సె."
+},
+
+{
+q:"Which metal lies approximately in the middle of the reactivity series?",
+te:"క్రియాశీలత శ్రేణి మధ్యలో ఉండే లోహం ఏది?",
+options:[
+"Sodium — సోడియం",
+"Gold — బంగారం",
+"Potassium — పొటాషియం",
+"Iron — ఇనుము"
+],
+answer:3,
+exEn:"Iron is placed around the middle of the commonly used metal reactivity series.",
+exTe:"సాధారణంగా ఉపయోగించే లోహాల క్రియాశీలత శ్రేణిలో ఇనుము మధ్య ప్రాంతంలో ఉంటుంది."
+},
+
+{
+q:"Which poultry birds are reared mainly for producing eggs?",
+te:"గుడ్లను ఉత్పత్తి చేయడానికి పెంచే కోళ్లు ఏవి?",
+options:[
+"Milch — మిల్చ్",
+"Layers — లేయర్స్",
+"Common carp — కామన్ కార్ప్",
+"Broilers — బ్రాయిలర్లు"
+],
+answer:1,
+exEn:"Layers are poultry birds specifically reared for egg production.",
+exTe:"గుడ్ల ఉత్పత్తి కోసం ప్రత్యేకంగా పెంచే కోళ్లను లేయర్స్ అంటారు."
+},
+
+{
+q:"When naphthalene is burnt in open air, what is observed?",
+te:"నాఫ్తలీన్‌ను బహిరంగ ప్రదేశంలో కాల్చినప్పుడు ఏమి గమనించవచ్చు?",
+options:[
+"Yellow flame without deposit — ఎటువంటి నిక్షేపం లేకుండా పసుపు మంట",
+"Blue flame — నీలిరంగు మంట",
+"Blue flame with black soot — నల్లటి మసితో నీలిరంగు మంట",
+"Yellow flame with black soot — నల్లటి మసితో పసుపు మంట"
+],
+answer:3,
+exEn:"Naphthalene is a carbon-rich hydrocarbon and burns with a yellow sooty flame.",
+exTe:"నాఫ్తలీన్‌లో కార్బన్ అధికంగా ఉండటం వల్ల ఇది పసుపు రంగు మంటతో, నల్లటి మసితో మండుతుంది."
+},
+
+{
+q:"Which plant tissue performs photosynthesis?",
+te:"క్రింది వాటిలో ఏ వృక్ష కణజాలం కిరణజన్య సంయోగక్రియను నిర్వహిస్తుంది?",
+options:[
+"Xylem — దారువు",
+"Chlorenchyma — హరిత కణజాలం",
+"Phloem — పోషక కణజాలం",
+"Sclerenchyma — దృఢకణ కణజాలం"
+],
+answer:1,
+exEn:"Chlorenchyma contains chloroplasts and performs photosynthesis.",
+exTe:"హరిత కణజాలంలో క్లోరోప్లాస్టులు ఉండటం వల్ల కిరణజన్య సంయోగక్రియ జరుగుతుంది."
+},
+
+{
+q:"What is the main role of micelles in the cleaning action of soap?",
+te:"సబ్బు యొక్క శుభ్రపరిచే చర్యలో మైసెల్స్ ప్రధాన పాత్ర ఏమిటి?",
+options:[
+"Trap and remove oil and dirt from clothes — బట్టల నుండి నూనె మరియు మురికిని పట్టి తొలగించడం",
+"Increase surface tension of water — నీటి ఉపరితల తన్యతను పెంచడం",
+"Produce foam with water — నీటితో నురుగును ఉత్పత్తి చేయడం",
+"Reduce hardness of water — నీటి కాఠిన్యాన్ని తగ్గించడం"
+],
+answer:0,
+exEn:"Micelles surround oil and grease and help remove them from the surface during washing.",
+exTe:"మైసెల్స్ నూనె మరియు కొవ్వు పదార్థాలను చుట్టుముట్టి బట్టల నుండి వాటిని తొలగించడంలో సహాయపడతాయి."
+},
+
+{
+q:"Which statement best describes the law of constant proportions?",
+te:"స్థిరానుపాత నియమాన్ని ఏ ప్రకటన బాగా వివరిస్తుంది?",
+options:[
+"A compound always contains the same elements in the same proportion by mass — సమ్మేళనం ఎల్లప్పుడూ ఒకే మూలకాలను ఒకే ద్రవ్యరాశి నిష్పత్తిలో కలిగి ఉంటుంది",
+"Elements occur in random ratios — మూలకాలు యాదృచ్ఛిక నిష్పత్తుల్లో ఉంటాయి",
+"Mass cannot be created or destroyed in a chemical reaction — రసాయన చర్యలో ద్రవ్యరాశిని సృష్టించలేము లేదా నాశనం చేయలేము",
+"Atoms can be divided into smaller particles during a reaction — చర్యలో పరమాణువులను చిన్న కణాలుగా విభజించవచ్చు"
+],
+answer:0,
+exEn:"A pure compound always contains the same elements in a fixed ratio by mass.",
+exTe:"స్వచ్ఛమైన సమ్మేళనంలో మూలకాలు ఎల్లప్పుడూ ఒక స్థిరమైన ద్రవ్యరాశి నిష్పత్తిలో ఉంటాయి."
+},
+
+{
+q:"Which statement about potential difference is correct?",
+te:"విద్యుత్ పొటెన్షియల్ బేధం గురించి సరైన ప్రకటన ఏది?",
+options:[
+"Statement 2 only is correct — ప్రకటన 2 మాత్రమే సరైనది",
+"Statement 1 only is correct — ప్రకటన 1 మాత్రమే సరైనది",
+"Both statements 1 and 2 are correct — ప్రకటనలు 1 మరియు 2 రెండూ సరైనవి",
+"Both statements are incorrect — ప్రకటనలు 1 మరియు 2 రెండూ తప్పు"
+],
+answer:1,
+exEn:"Potential difference is measured in volts. One volt is one joule per coulomb, not one newton per coulomb.",
+exTe:"పొటెన్షియల్ బేధాన్ని వోల్ట్లలో కొలుస్తారు. ఒక వోల్ట్ = ఒక జౌల్/కూలంబ్; న్యూటన్/కూలంబ్ కాదు."
+},
+
+{
+q:"Why is the acceleration of a satellite in uniform circular motion not zero?",
+te:"సమ వృత్తాకార చలనంలో ఉపగ్రహం యొక్క త్వరణం సున్నా కాకపోవడానికి కారణం ఏమిటి?",
+options:[
+"Gravity is too weak to maintain constant speed — స్థిర వేగాన్ని కొనసాగించడానికి గురుత్వాకర్షణ చాలా బలహీనంగా ఉంటుంది",
+"The direction of motion continuously changes, so velocity changes — చలన దిశ నిరంతరం మారడం వల్ల వేగవెక్టర్ మారుతుంది",
+"Mechanical energy conservation causes acceleration — యాంత్రిక శక్తి సంరక్షణ వల్ల త్వరణం ఏర్పడుతుంది",
+"The mass continuously changes — ద్రవ్యరాశి నిరంతరం మారుతుంది"
+],
+answer:1,
+exEn:"In circular motion, velocity changes continuously because its direction changes. Therefore acceleration is present.",
+exTe:"వృత్తాకార చలనంలో వేగవెక్టర్ దిశ నిరంతరం మారుతుంది. కాబట్టి త్వరణం ఉంటుంది."
+},
+
+{
+q:"Why do printed letters appear raised when a thick glass slab is placed over them?",
+te:"ముద్రించిన అక్షరాలపై మందపాటి గాజు పలకను ఉంచినప్పుడు అవి పైకి ఉబ్బినట్లు కనిపించడానికి కారణం ఏమిటి?",
+options:[
+"Dispersion of light — కాంతి పరిక్షేపణం",
+"Refraction of light — కాంతి వక్రీభవనం",
+"Polarisation — కాంతి ధ్రువణత",
+"Total internal reflection — సంపూర్ణ అంతర్గత పరావర్తనం"
+],
+answer:1,
+exEn:"The apparent shift is due to refraction of light through the glass slab.",
+exTe:"గాజు పలక ద్వారా కాంతి వక్రీభవనం చెందడం వల్ల అక్షరాలు పైకి వచ్చినట్లు కనిపిస్తాయి."
+},
+
+{
+q:"When water and nutrients are available, algae reproduce rapidly by which process?",
+te:"నీరు మరియు పోషకాలు అందుబాటులో ఉన్నప్పుడు శైవలాలు ఏ ప్రక్రియ ద్వారా వేగంగా పెరుగుతాయి?",
+options:[
+"Spore formation — సిద్ధబీజ నిర్మాణం",
+"Pollination — పరాగసంపర్కం",
+"Fragmentation — ఖండీకరణ / ముక్కలగుట",
+"Budding — కోరకీభవనం"
+],
+answer:2,
+exEn:"Many filamentous algae reproduce asexually by fragmentation.",
+exTe:"చాలా తంతు ఆకార శైవలాలు ఖండీకరణ ద్వారా అలైంగికంగా పునరుత్పత్తి చేస్తాయి."
+},
+
+{
+q:"Which functional group does NOT contain oxygen?",
+te:"ఆక్సిజన్ లేని క్రియాశీల సమూహం ఏది?",
+options:[
+"Ketone — కీటోన్",
+"Haloalkane — హాలో ఆల్కేన్",
+"Alcohol — ఆల్కహాల్",
+"Carboxylic acid — కార్బాక్సిలిక్ ఆమ్లం"
+],
+answer:1,
+exEn:"Haloalkanes contain halogen atoms but do not contain oxygen in their functional group.",
+exTe:"హాలో ఆల్కేన్లలో హాలోజన్ పరమాణువు ఉంటుంది కానీ క్రియాశీల సమూహంలో ఆక్సిజన్ ఉండదు."
+},
+
+{
+q:"Which life process is important for producing variation in species?",
+te:"జాతులలో వైవిధ్యాన్ని తీసుకురావడానికి ముఖ్యమైన జీవన ప్రక్రియ ఏది?",
+options:[
+"Autotrophic nutrition — స్వయంపోషిత పోషణ",
+"Sexual reproduction — లైంగిక పునరుత్పత్తి",
+"Transportation — రవాణా",
+"Heterotrophic nutrition — పరపోషిత పోషణ"
+],
+answer:1,
+exEn:"Sexual reproduction creates genetic variation through recombination of genetic material.",
+exTe:"లైంగిక పునరుత్పత్తిలో జన్యు పదార్థం కలయిక వల్ల జన్యు వైవిధ్యం ఏర్పడుతుంది."
+},
+
+{
+q:"Why is making copies of DNA important during reproduction?",
+te:"ప్రత్యుత్పత్తి సమయంలో DNA కాపీలను సృష్టించడం ఎందుకు ముఖ్యమైనది?",
+options:[
+"For blood circulation — రక్త ప్రసరణ కోసం",
+"For respiration — శ్వాసక్రియ కోసం",
+"For inheritance of traits — లక్షణాల వారసత్వం కోసం",
+"For digestion — జీర్ణక్రియ కోసం"
+],
+answer:2,
+exEn:"DNA carries genetic information, so copying DNA helps transfer hereditary traits to offspring.",
+exTe:"DNAలో జన్యు సమాచారం ఉంటుంది. DNA కాపీ కావడం వల్ల తల్లిదండ్రుల లక్షణాలు సంతానానికి సంక్రమిస్తాయి."
+}
+
+];
+
+
+/* =========================
+   VARIABLES
+========================= */
+
+let studentName="";
+let timeLeft=20*60;
+let timerInterval=null;
+let submitted=false;
+
+
+/* =========================
+   START EXAM
+========================= */
+
+function startExam(){
+
+studentName=document.getElementById("studentName").value.trim();
+
+if(studentName===""){
+alert("Please enter Student Name / విద్యార్థి పేరు నమోదు చేయండి.");
+return;
+}
+
+document.getElementById("startScreen").classList.add("hidden");
+document.getElementById("examScreen").classList.remove("hidden");
+
+document.getElementById("displayName").innerText=studentName;
+
+buildQuestions();
+
+startTimer();
+
+window.scrollTo(0,0);
+}
+
+
+/* =========================
+   BUILD QUESTIONS
+========================= */
+
+function buildQuestions(){
+
+let html="";
+
+questions.forEach((q,i)=>{
+
+html+=`
+<div class="card">
+
+<span class="qno">Question ${i+1} / 25</span>
+
+<p class="question">
+${i+1}. ${q.q}
+</p>
+
+<p class="telugu">
+<b>తెలుగు:</b> ${q.te}
+</p>
+
+<div>
+${q.options.map((op,j)=>`
+
+<label class="option">
+
+<input
+type="radio"
+name="q${i}"
+value="${j}"
+>
+
+${String.fromCharCode(65+j)}. ${op}
+
+</label>
+
+`).join("")}
+</div>
+
+</div>
+`;
+
+});
+
+document.getElementById("questions").innerHTML=html;
+}
+
+
+/* =========================
+   TIMER
+========================= */
+
+function startTimer(){
+
+timerInterval=setInterval(()=>{
+
+timeLeft--;
+
+let min=Math.floor(timeLeft/60);
+let sec=timeLeft%60;
+
+document.getElementById("timer").innerText=
+String(min).padStart(2,"0")+":"+
+String(sec).padStart(2,"0");
+
+if(timeLeft<=0){
+
+clearInterval(timerInterval);
+
+alert("Time Over! / సమయం పూర్తయింది!");
+
+submitExam(true);
+
+}
+
+},1000);
+
+}
+
+
+/* =========================
+   SUBMIT
+========================= */
+
+function submitExam(autoSubmit){
+
+if(submitted)return;
+
+if(!autoSubmit){
+
+let confirmSubmit=
+confirm("Are you sure you want to submit the test?\n\nమీరు పరీక్షను సమర్పించాలనుకుంటున్నారా?");
+
+if(!confirmSubmit)return;
+
+}
+
+submitted=true;
+
+clearInterval(timerInterval);
+
+let correct=0;
+let wrong=0;
+let unanswered=0;
+let score=0;
+
+let reviewHTML="";
+
+questions.forEach((q,i)=>{
+
+let selected=document.querySelector(
+`input[name="q${i}"]:checked`
+);
+
+let selectedIndex=
+selected ? Number(selected.value) : -1;
+
+if(selectedIndex===-1){
+
+unanswered++;
+
+}
+else if(selectedIndex===q.answer){
+
+correct++;
+
+score+=1;
+
+}
+else{
+
+wrong++;
+
+score-=0.33;
+
+}
+
+
+/* Review */
+
+let userAnswer=
+selectedIndex===-1
+? "Not Answered / సమాధానం ఇవ్వలేదు"
+: q.options[sel
