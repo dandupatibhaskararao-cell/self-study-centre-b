@@ -132,24 +132,5 @@ build();
     measurementId: "G-0P8BT5N1J8"
   };
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  window.firebaseAdminLogin = function(){
-    const email = document.getElementById("uid").value.trim() +
-                  "@selfstudycentre-d.com";
-
-    const password = document.getElementById("pwd").value;
-
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
-        localStorage.setItem("role","admin");
-        page("admin");
-      })
-      .catch((error) => {
-        document.getElementById("loginMsg").innerText =
-          "Invalid Admin Login";
-      });
-  };
-</script>
-</body></html>
+  const app = init
+  
