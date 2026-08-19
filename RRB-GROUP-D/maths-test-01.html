@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="te">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>RRB GROUP D Maths Test-01</title>
+
+<style>
+body{
+font-family:Arial,"Noto Sans Telugu",sans-serif;
+background:#f1f5f9;
+margin:0;
+}
+
+header{
+background:#123b8f;
+color:white;
+padding:20px;
+text-align:center;
+}
+
+.box{
+background:white;
+width:95%;
+max-width:800px;
+margin:20px auto;
+padding:20px;
+border-radius:15px;
+box-shadow:0 3px 10px #0002;
+}
+
+button{
+background:#2563eb;
+color:white;
+border:0;
+padding:12px 18px;
+border-radius:8px;
+margin:5px;
+font-weight:bold;
+}
+
+.option{
+display:block;
+background:#e8eef8;
+padding:10px;
+margin:8px 0;
+border-radius:8px;
+}
+
+#timer{
+color:red;
+font-size:22px;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h2>🚆 RRB GROUP D</h2>
+<h3>Mathematics Test - 01</h3>
+</header>
+
+
+<div class="box" id="start">
+
+<h3>Instructions</h3>
+
+<p>
+Questions : 25<br>
+Marks : 25<br>
+Time : 20 Minutes<br>
+Correct Answer : +1
+</p>
+
+<input id="name" placeholder="Student Name">
+
+<br><br>
+
+<button onclick="startExam()">
+Start Exam
+</button>
+
+</div>
+
+
+<div class="box" id="exam" style="display:none">
+
+<h3>
+Time Left :
+<span id="timer">20:00</span>
+</h3>
+
+<hr>
+
+<h3 id="question"></h3>
+
+<div id="options"></div>
+
+
+<button onclick="prev()">Previous</button>
+
+<button onclick="next()">Next</button>
+
+<br>
+
+<button onclick="submitExam()">
+Submit Test
+</button>
+
+</div>
+
+
+<div class="box" id="result" style="display:none">
+
+<h2>Result</h2>
+
+<p id="resultData"></p>
+
+</div>
+
+
+<script>
+
+let index=0;
+let time=1200;
+let user={};
+let questions=[
+
+{
+q:"Q.26 ఒక కుంభాకార పంచభుజి యొక్క వైశాల్యం ఎంత?",
+o:["39 చదరపు యూనిట్లు","45 చదరపు యూనిట్లు","42 చదరపు యూనిట్లు","36 చదరపు యూనిట్లు"],
+a:"39 చదరపు యూనిట్లు"
+},
+
+{
+q:"Q.27 ఇచ్చిన మార్కుల దత్తాంశం యొక్క బాహుళకం ఎంత?",
+o:["84","83","87","85"],
+a:"85"
+},
+
+{
+q:"Q.28 HCF=18, LCM=1512. ఒక సంఖ్య 126 అయితే వ్యత్యాసం ఎంత?",
+o:["90","256","126","216"],
+a:"90"
+},
+
+{
+q:"Q.29 సోనియా సోదరి ప్రస్తుత వయస్సు ఎంత?",
+o:["32 సంవత్సరాలు","24 సంవత్సరాలు","28 సంవత్సరాలు","40 సంవత్సరాలు"],
+a:"32 సంవత్సరాలు"
+},
+
+{
+q:"Q.30 3:2 కి సమానమైన నిష్పత్తి ఏది?",
+o:["54:36","53:38","51:37","52:34"],
+a:"54:36"
+},
+
+{
+q:"Q.32 120 మామిడి పండ్ల అమ్మకపు ధర 150 పండ్ల కొనుగోలు ధరకు సమానం. లాభ శాతం?",
+o:["20%","35%","30%","25%"],
+a:"25%"
+},
+
+{
+q:"Q.33 26 మంది విద్యార్థుల సగటు వయస్సు 26. ఉపాధ్యాయుడితో సగటు 27. ఉపాధ్యాయుడి వయస్సు?",
+o:["50","54","53","57"],
+a:"53"
+},
+
+{
+q:"Q.34 PA=98, PB=91, PC=21 అయితే PD విలువ?",
+o:["42","46","38","41"],
+a:"46"
+},
+
+{
+q:"Q.37 A+B పని 6 రోజులు, B 12 రోజులు. A రెట్టింపు పని చేయడానికి?",
+o:["24","12","27","25"],
+a:"24"
+},
+
+{
+q:"Q.38 ఒక సంఖ్యలో 20% + 90 = అదే సంఖ్య. 80% ఎంత?",
+o:["110","120","100","90"],
+a:"120"
+},
+
+{
+q:"Q.40 ₹8900 పై 40% markup, 5% discount. లాభం?",
+o:["33%","34%","32%","35%"],
+a:"33%"
+}
+
+];
+
+
+function startExam(){
+
+if(document.getElementById("name").value==""){
+alert("Student Name ఇవ్వండి");
+return;
+}
+
+document.getElementById("start").style.display="none";
+document.getElementById("exam").style.display="block";
+
+showQuestion();
+
+
+let timer=setInterval(()=>{
+
+time--;
+
+let m=Math.floor(time/60);
+let s=time%60;
+
+document.getElementById("timer").innerHTML=
+m+":"+(s<10?"0":"")+s;
+
+
+if(time<=0){
+clearInterval(timer);
+submitExam();
+}
+
+},1000);
+
+}
+
+
+
+function showQuestion(){
+
+let q=questions[index];
+
+document.getElementById("question").innerHTML=q.q;
+
+
+document.getElementById("options").innerHTML=
+q.o.map(x=>
+
+`
+<label class="option">
+<input type="radio"
+name="ans"
+value="${x}"
+onclick="save('${x}')">
+${x}
+</label>
+
+`
+
+).join("");
+
+}
+
+
+
+function save(x){
+user[index]=x;
+}
+
+
+function next(){
+
+if(index<questions.length-1){
+index++;
+showQuestion();
+}
+
+}
+
+
+function prev(){
+
+if(index>0){
+index--;
+showQuestion();
+}
+
+   }
+function submitExam(){
+
+let score=0;
+
+questions.forEach((q,i)=>{
+
+if(user[i]==q.a){
+score++;
+}
+
+});
+
+
+document.getElementById("exam").style.display="none";
+
+document.getElementById("result").style.display="block";
+
+
+let percent=Math.round((score/questions.length)*100);
+
+
+document.getElementById("resultData").innerHTML=
+
+`
+<b>SELF STUDY CENTRE-D</b><br><br>
+
+RRB GROUP D Maths Test - 01<br><br>
+
+Total Questions : ${questions.length}<br>
+
+Correct Answers : ${score}<br>
+
+Wrong Answers : ${questions.length-score}<br>
+
+Marks : ${score}/${questions.length}<br>
+
+Percentage : ${percent}%<br><br>
+
+${percent>=40?"✅ Qualified":"❌ Need More Practice"}
+
+`;
+
+}
+
+</script>
+
+</body>
+</html>
