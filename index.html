@@ -11,7 +11,7 @@ header{background:linear-gradient(135deg,#123b8f,#2563eb);color:#fff;padding:25p
 nav{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;padding:10px;background:#fff;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px #0001}
 button{border:0;border-radius:9px;padding:10px 14px;background:#2563eb;color:#fff;font-weight:bold;cursor:pointer}
 nav button{background:#edf3ff;color:#16439c}.wrap{max-width:1100px;margin:20px auto;padding:0 14px}
-section{display:none}.active{display:block}.hero,.card,.login{background:#fff;border-radius:16px;padding:22px;box-shadow:0 4px 15px #0001;margin-bottom:16px}
+section{display:none}section:target{display:block}.active{display:block}.hero,.card,.login{background:#fff;border-radius:16px;padding:22px;box-shadow:0 4px 15px #0001;margin-bottom:16px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
 h2,h3{color:#173b8f}.input{width:100%;padding:12px;margin:6px 0 13px;border:1px solid #ccd4df;border-radius:8px}
 .badge{background:#e8f0ff;color:#1745a2;border-radius:20px;padding:5px 9px;font-size:12px}
@@ -39,7 +39,9 @@ table{width:100%;border-collapse:collapse;background:#fff}td,th{padding:10px;bor
 <button onclick="page('home')">🏠 Home</button><button onclick="page('classes')">📚 Classes</button>
 <button onclick="page('rrbgd')">🚆 RRB GROUP D</button>
 <button onclick="page('tests')">📝 Tests</button><button onclick="page('materials')">📖 Materials</button>
-<button onclick="page('videos')">🎥 Videos</button><button onclick="login()">Login</button>
+<button onclick="page('videos')">🎥 Videos</button><a href="#login" style="text-decoration:none">
+<button>🔐 Login</button>
+</a>
 </nav>
 <div class="wrap">
 
