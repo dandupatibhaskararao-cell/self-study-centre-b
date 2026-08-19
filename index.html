@@ -115,4 +115,41 @@ else document.getElementById("loginMsg").innerText="Invalid Login. Demo: Admin/a
 function logout(){localStorage.removeItem("role");page("home")}
 build();
 </script>
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import {
+    getAuth,
+    signInWithEmailAndPassword
+  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAIG-hAP6U82xuFl1lZq3zocu3Z0eXWnFc",
+    authDomain: "self-study-centre-d-8f23c.firebaseapp.com",
+    projectId: "self-study-centre-d-8f23c",
+    storageBucket: "self-study-centre-d-8f23c.firebasestorage.app",
+    messagingSenderId: "168365780150",
+    appId: "1:168365780150:web:fea063805670156eca0a17",
+    measurementId: "G-0P8BT5N1J8"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  window.firebaseAdminLogin = function(){
+    const email = document.getElementById("uid").value.trim() +
+                  "@selfstudycentre-d.com";
+
+    const password = document.getElementById("pwd").value;
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        localStorage.setItem("role","admin");
+        page("admin");
+      })
+      .catch((error) => {
+        document.getElementById("loginMsg").innerText =
+          "Invalid Admin Login";
+      });
+  };
+</script>
 </body></html>
