@@ -816,7 +816,183 @@ score-=0.33;
 
 /* Review */
 
-let userAnswer=
-selectedIndex===-1
+let userAnswer =
+selectedIndex === -1
 ? "Not Answered / సమాధానం ఇవ్వలేదు"
-: q.options[sel
+: q.options[selectedIndex];
+
+let correctAnswer = q.options[q.answer];
+
+if(selectedIndex === -1){
+
+reviewHTML += `
+<div class="unanswered">
+
+<h3>Question ${i+1}</h3>
+
+<p><b>${q.q}</b></p>
+
+<p class="telugu">
+${q.te}
+</p>
+
+<p>
+⭕ <b>Not Answered:</b>
+సమాధానం ఇవ్వలేదు
+</p>
+
+<p>
+✅ <b>Correct Answer:</b>
+${String.fromCharCode(65+q.answer)}.
+${correctAnswer}
+</p>
+
+<div class="explain">
+
+<b>Explanation / వివరణ:</b><br><br>
+
+${q.exEn}<br>
+${q.exTe}
+
+</div>
+
+</div>
+`;
+
+}
+
+else if(selectedIndex === q.answer){
+
+reviewHTML += `
+<div class="correct">
+
+<h3>Question ${i+1}</h3>
+
+<p><b>${q.q}</b></p>
+
+<p class="telugu">
+${q.te}
+</p>
+
+<p>
+✅ <b>Your Answer:</b>
+${String.fromCharCode(65+selectedIndex)}.
+${userAnswer}
+</p>
+
+<p>
+✅ <b>Correct Answer:</b>
+${String.fromCharCode(65+q.answer)}.
+${correctAnswer}
+</p>
+
+<div class="explain">
+
+<b>Explanation / వివరణ:</b><br><br>
+
+${q.exEn}<br>
+${q.exTe}
+
+</div>
+
+</div>
+`;
+
+}
+
+else{
+
+reviewHTML += `
+<div class="wrong">
+
+<h3>Question ${i+1}</h3>
+
+<p><b>${q.q}</b></p>
+
+<p class="telugu">
+${q.te}
+</p>
+
+<p>
+❌ <b>Your Answer:</b>
+${String.fromCharCode(65+selectedIndex)}.
+${userAnswer}
+</p>
+
+<p>
+✅ <b>Correct Answer:</b>
+${String.fromCharCode(65+q.answer)}.
+${correctAnswer}
+</p>
+
+<div class="explain">
+
+<b>Explanation / వివరణ:</b><br><br>
+
+${q.exEn}<br>
+${q.exTe}
+
+</div>
+
+</div>
+`;
+
+}
+
+});
+
+
+/* SHOW RESULT */
+
+document.getElementById("examScreen")
+.classList.add("hidden");
+
+document.getElementById("resultScreen")
+.classList.remove("hidden");
+
+document.getElementById("resultName")
+.innerText = studentName;
+
+document.getElementById("resultScore")
+.innerText = score.toFixed(2) + " / 25";
+
+let percentage = (score / 25) * 100;
+
+document.getElementById("resultPercentage")
+.innerText = percentage.toFixed(2) + "%";
+
+document.getElementById("resultWrong")
+.innerText = wrong;
+
+document.getElementById("resultCorrect")
+.innerText = correct;
+
+document.getElementById("resultUnanswered")
+.innerText = unanswered;
+
+document.getElementById("review")
+.innerHTML = reviewHTML;
+
+window.scrollTo(0,0);
+
+}
+
+
+/* PREVENT REFRESH */
+
+window.addEventListener("beforeunload",function(e){
+
+if(
+!submitted &&
+!document.getElementById("examScreen")
+.classList.contains("hidden")
+){
+
+e.preventDefault();
+e.returnValue="";
+
+}
+
+});
+
+</script>
