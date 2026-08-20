@@ -1,139 +1,770 @@
-<!doctype html>
+ <!doctype html>
 <html lang="te">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SELF STUDY CENTRE-D | Online Study Centre</title>
-<meta name="description" content="SELF STUDY CENTRE-D - Classes 1 to 10, Online Tests, Study Materials, Video Classes and Competitive Exam Preparation.">
-<meta name="google-site-verification" content="uGBEvJMw4d-r36tIozV0jbl-G6idLRp1QIY9I5NtNIQ" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>SELF STUDY CENTRE-D</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,"Noto Sans Telugu",sans-serif;background:#f4f7fb;color:#172033}
-header{background:linear-gradient(135deg,#123b8f,#2563eb);color:#fff;padding:25px 15px;text-align:center}
-nav{display:flex;gap:7px;flex-wrap:wrap;justify-content:center;padding:10px;background:#fff;position:sticky;top:0;z-index:5;box-shadow:0 2px 10px #0001}
-button{border:0;border-radius:9px;padding:10px 14px;background:#2563eb;color:#fff;font-weight:bold;cursor:pointer}
-nav button{background:#edf3ff;color:#16439c}.wrap{max-width:1100px;margin:20px auto;padding:0 14px}
-section{display:none}section:target{display:block}.active{display:block}.hero,.card,.login{background:#fff;border-radius:16px;padding:22px;box-shadow:0 4px 15px #0001;margin-bottom:16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px}
-h2,h3{color:#173b8f}.input{width:100%;padding:12px;margin:6px 0 13px;border:1px solid #ccd4df;border-radius:8px}
-.badge{background:#e8f0ff;color:#1745a2;border-radius:20px;padding:5px 9px;font-size:12px}
-.row{display:flex;gap:10px;flex-wrap:wrap}.danger{background:#dc3545}.success{background:#198754}
-table{width:100%;border-collapse:collapse;background:#fff}td,th{padding:10px;border-bottom:1px solid #eee;text-align:left}
-.small{color:#667085;font-size:14px}
+*{box-sizing:border-box}
+
+body{
+ margin:0;
+ font-family:Arial,"Noto Sans Telugu",sans-serif;
+ background:#f4f7fb;
+ color:#172033;
+}
+
+header{
+ background:linear-gradient(135deg,#123b8f,#2563eb);
+ color:white;
+ padding:20px 10px;
+ text-align:center;
+}
+
+.headerBox{
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ gap:20px;
+ flex-wrap:wrap;
+}
+
+.headerBox img{
+ width:90px;
+ height:90px;
+ border-radius:50%;
+ object-fit:cover;
+ border:4px solid white;
+}
+
+nav{
+ display:flex;
+ gap:7px;
+ flex-wrap:wrap;
+ justify-content:center;
+ padding:10px;
+ background:white;
+ position:sticky;
+ top:0;
+ z-index:10;
+ box-shadow:0 2px 10px #0002;
+}
+
+button{
+ border:0;
+ border-radius:9px;
+ padding:11px 15px;
+ background:#2563eb;
+ color:white;
+ font-weight:bold;
+ cursor:pointer;
+}
+
+nav button{
+ background:#edf3ff;
+ color:#16439c;
+}
+
+.wrap{
+ max-width:1100px;
+ margin:20px auto;
+ padding:0 14px;
+}
+
+.page{
+ display:none;
+}
+
+.page.show{
+ display:block;
+}
+
+.card{
+ background:white;
+ border-radius:16px;
+ padding:22px;
+ margin-bottom:16px;
+ box-shadow:0 4px 15px #0001;
+}
+
+.grid{
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+ gap:14px;
+}
+
+h2,h3{
+ color:#173b8f;
+}
+
+.input{
+ width:100%;
+ padding:12px;
+ margin:7px 0 13px;
+ border:1px solid #ccd4df;
+ border-radius:8px;
+}
+
+.success{
+ background:#198754;
+}
+
+.danger{
+ background:#dc3545;
+}
+
+.message{
+ font-weight:bold;
+ margin-top:15px;
+}
 </style>
 </head>
+
 <body>
+
 <header>
-  <div style="display:flex;align-items:center;justify-content:center;gap:25px;">
-    
-    <div>
-      <h1>📚 SELF STUDY CENTRE-D</h1>
-      <p>Learn • Practice • Test • Improve</p>
-    </div>
+<div class="headerBox">
 
-    <img src="images%20(1).jpeg"
-         alt="RGV"
-         style="width:100px;height:100px;border-radius:50%;object-fit:cover;border:4px solid white;">
+<div>
+<h1>📚 SELF STUDY CENTRE-D</h1>
+<p>Learn • Practice • Test • Improve</p>
+</div>
 
-  </div>
+<img src="images%20(1).jpeg" alt="RGV">
+
+</div>
 </header>
+
 <nav>
-<button onclick="page('home')">🏠 Home</button><button onclick="page('classes')">📚 Classes</button>
-<button onclick="page('rrbgd')">🚆 RRB GROUP D</button>
-<button onclick="page('tests')">📝 Tests</button><button onclick="page('materials')">📖 Materials</button>
-<button onclick="page('videos')">🎥 Videos</button><a href="#login" style="text-decoration:none">
-<button>🔐 Login</button>
-</a>
+
+<button onclick="showPage('home')">🏠 Home</button>
+
+<button onclick="showPage('classes')">📚 Classes</button>
+
+<button onclick="showPage('rrbgd')">🚆 RRB GROUP D</button>
+
+<button onclick="showPage('tests')">📝 Tests</button>
+
+<button onclick="showPage('materials')">📖 Materials</button>
+
+<button onclick="showPage('videos')">🎥 Videos</button>
+
+<!-- IMPORTANT: This only opens login page -->
+<button onclick="showPage('login')">🔐 Login</button>
+
 </nav>
+
 <div class="wrap">
 
-<section id="home" class="active">
-<div class="hero"><h2>స్వయంగా చదువు – పరీక్షలో విజయం సాధించు</h2><p>Classes 1–10 • MCQ Tests • Study Material • Competitive Exams</p><button onclick="page('tests')">Start Test</button></div>
-<div class="grid"><div class="card"><h3>📘 School Classes</h3><p>1st–10th class learning resources.</p></div><div class="card"><h3>📝 Online Tests</h3><p>MCQ practice with instant marks.</p></div><div class="card"><h3>🎯 Competitive Exams</h3><p>RRB, SSC, APPSC practice section.</p></div><div class="card"><h3>🎥 Video Classes</h3><p>Concept explanation videos section.</p></div></div>
-</section>
+<!-- HOME -->
 
-<section id="classes"><h2>📚 Classes 1–10</h2><div class="grid" id="classGrid"></div></section>
-<section id="tests"><h2>📝 Online Test</h2><div class="card"><span class="badge">Demo Test</span><h3>General Knowledge & Basic Maths</h3><div id="quiz"></div><button onclick="submitQuiz()">Submit Test</button><p id="score"></p></div></section>
-<section id="materials">
-<h2>📖 Study Material</h2>
+<div id="home" class="page show">
 
 <div class="card">
-<h3>🔬 NCERT Science Class VI to X</h3>
-<p>Study Materials & MCQs</p>
 
-<div class="row">
-<a href="https://raw.githubusercontent.com/dandupatibhaskararao-cell/self-study-centre-b/50c125168baf500e28333ece3fd019a39b49bad8/NCERT%20SCIENCE%20CLASS%20VI%20TO%20X%20STUDY%20MATERIALS%20AND%20MCQS.pdf" target="_blank">
-<button>📖 View PDF</button>
-</a>
+<h2>స్వయంగా చదువు – పరీక్షలో విజయం సాధించు</h2>
 
-<a href="https://raw.githubusercontent.com/dandupatibhaskararao-cell/self-study-centre-b/50c125168baf500e28333ece3fd019a39b49bad8/NCERT%20SCIENCE%20CLASS%20VI%20TO%20X%20STUDY%20MATERIALS%20AND%20MCQS.pdf" download>
-<button class="success">⬇️ Download PDF</button>
-</a>
-</div>
-</div>
+<p>
+Classes 1–10 • MCQ Tests • Study Material • Competitive Exams
+</p>
 
-</section>
-<section id="rrbgd">
-<h2>🚆 RRB GROUP D</h2>
-
-<div class="card">
-<h3>📝 RRB GROUP D Online Test</h3>
-
-<p>25 Questions • 25 Marks • 20 Minutes</p>
-<p>English + Telugu | 4 Options</p>
-<p>✅ Correct: +1 Mark</p>
-<p>❌ Wrong: −0.33 Mark</p>
-
-<button class="success"
-onclick="window.location.href='RRB-GROUP-D/rrb-group-d-test.html'"
-🚀 Start Online Test
+<button onclick="showPage('tests')">
+📝 Start Test
 </button>
 
 </div>
-</section>
-<section id="videos"><h2>🎥 Video Classes</h2><div class="card"><p>ఇక్కడ YouTube / recorded classes links తరువాత Admin ద్వారా add చేయవచ్చు.</p></div></section>
 
-<section id="login"><div class="login"><h2>🔐 Login</h2><label>Login Type</label><select class="input" id="role"><option value="student">Student</option><option value="admin">Admin</option></select><label>User ID</label><input class="input" id="uid" placeholder="Enter User ID"><label>Password</label><input class="input" id="pwd" type="password" placeholder="Enter Password"><button onclick="login()">Login</button><p id="loginMsg"></p></div></section>
+<div class="grid">
 
-<section id="student"><h2>👨‍🎓 Student Dashboard</h2><div class="grid"><div class="card"><h3>📝 Tests</h3><button onclick="page('tests')">Take Test</button></div><div class="card"><h3>📊 My Result</h3><p id="myResult">No test completed yet.</p></div><div class="card"><h3>📖 Materials</h3><button onclick="page('materials')">Study</button></div></div><button class="danger" onclick="logout()">Logout</button></section>
-
-<section id="admin"><h2>👨‍🏫 Admin Dashboard</h2><div class="card"><h3>Website Management</h3><p class="small">Demo admin panel: content counters and quick actions.</p><div class="grid"><div class="card"><b id="qCount">5</b><br>Questions</div><div class="card"><b>10</b><br>Classes</div><div class="card"><b>4</b><br>Subjects</div></div></div><button onclick="page('tests')">View Test</button> <button class="danger" onclick="logout()">Logout</button></section>
+<div class="card">
+<h3>📘 School Classes</h3>
+<p>1st–10th class learning resources.</p>
 </div>
+
+<div class="card">
+<h3>📝 Online Tests</h3>
+<p>MCQ practice with instant marks.</p>
+</div>
+
+<div class="card">
+<h3>🎯 Competitive Exams</h3>
+<p>RRB, SSC, APPSC practice.</p>
+</div>
+
+<div class="card">
+<h3>🎥 Video Classes</h3>
+<p>Concept explanation videos.</p>
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CLASSES -->
+
+<div id="classes" class="page">
+
+<h2>📚 Classes 1–10</h2>
+
+<div class="grid" id="classGrid"></div>
+
+</div>
+
+
+<!-- TESTS -->
+
+<div id="tests" class="page">
+
+<h2>📝 Online Test</h2>
+
+<div class="card">
+
+<h3>General Knowledge & Basic Maths</h3>
+
+<div id="quiz"></div>
+
+<button onclick="submitQuiz()">
+Submit Test
+</button>
+
+<p id="score"></p>
+
+</div>
+
+</div>
+
+
+<!-- MATERIALS -->
+
+<div id="materials" class="page">
+
+<h2>📖 Study Material</h2>
+
+<div class="card">
+
+<h3>🔬 NCERT Science Class VI to X</h3>
+
+<p>Study Materials & MCQs</p>
+
+<a
+href="https://raw.githubusercontent.com/dandupatibhaskararao-cell/self-study-centre-b/50c125168baf500e28333ece3fd019a39b49bad8/NCERT%20SCIENCE%20CLASS%20VI%20TO%20X%20STUDY%20MATERIALS%20AND%20MCQS.pdf"
+target="_blank">
+
+<button>📖 View PDF</button>
+
+</a>
+
+</div>
+
+</div>
+
+
+<!-- RRB -->
+
+<div id="rrbgd" class="page">
+
+<h2>🚆 RRB GROUP D</h2>
+
+<div class="card">
+
+<h3>📝 RRB GROUP D Online Test</h3>
+
+<p>25 Questions • 25 Marks • 20 Minutes</p>
+
+<p>English + Telugu | 4 Options</p>
+
+<p>✅ Correct: +1 Mark</p>
+
+<p>❌ Wrong: −0.33 Mark</p>
+
+<a href="RRB-GROUP-D/rrb-group-d-test.html">
+
+<button class="success">
+🚀 Start Online Test
+</button>
+
+</a>
+
+</div>
+
+</div>
+
+
+<!-- VIDEOS -->
+
+<div id="videos" class="page">
+
+<h2>🎥 Video Classes</h2>
+
+<div class="card">
+
+<p>
+YouTube / Recorded Classes త్వరలో add చేయవచ్చు.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- LOGIN PAGE -->
+
+<div id="login" class="page">
+
+<div class="card">
+
+<h2>🔐 Login</h2>
+
+<label>Login Type</label>
+
+<select id="loginType" class="input">
+
+<option value="admin">
+Admin
+</option>
+
+<option value="student">
+Student
+</option>
+
+</select>
+
+
+<label>User ID</label>
+
+<input
+id="userId"
+class="input"
+type="text"
+placeholder="Enter User ID">
+
+
+<label>Password</label>
+
+<input
+id="password"
+class="input"
+type="password"
+placeholder="Enter Password">
+
+
+<button onclick="doLogin()">
+🔐 Login
+</button>
+
+<p id="loginMessage" class="message"></p>
+
+</div>
+
+</div>
+
+
+<!-- STUDENT -->
+
+<div id="student" class="page">
+
+<h2>👨‍🎓 Student Dashboard</h2>
+
+<div class="grid">
+
+<div class="card">
+
+<h3>📝 Tests</h3>
+
+<button onclick="showPage('tests')">
+Take Test
+</button>
+
+</div>
+
+<div class="card">
+
+<h3>📊 My Result</h3>
+
+<p id="studentResult">
+No test completed yet.
+</p>
+
+</div>
+
+<div class="card">
+
+<h3>📖 Materials</h3>
+
+<button onclick="showPage('materials')">
+Study
+</button>
+
+</div>
+
+</div>
+
+<button class="danger" onclick="logout()">
+Logout
+</button>
+
+</div>
+
+
+<!-- ADMIN -->
+
+<div id="admin" class="page">
+
+<h2>👨‍🏫 Admin Dashboard</h2>
+
+<div class="card">
+
+<h3>Website Management</h3>
+
+<div class="grid">
+
+<div class="card">
+<b>5</b>
+<br>
+Questions
+</div>
+
+<div class="card">
+<b>10</b>
+<br>
+Classes
+</div>
+
+<div class="card">
+<b>4</b>
+<br>
+Subjects
+</div>
+
+</div>
+
+</div>
+
+<button onclick="showPage('tests')">
+📝 View Tests
+</button>
+
+<button class="danger" onclick="logout()">
+Logout
+</button>
+
+</div>
+
+</div>
+
+
 <script>
+
+/* =========================
+ PAGE NAVIGATION
+========================= */
+
+function showPage(id){
+
+ document.querySelectorAll(".page").forEach(function(page){
+
+   page.classList.remove("show");
+
+ });
+
+ const selected=document.getElementById(id);
+
+ if(selected){
+
+   selected.classList.add("show");
+
+ }
+
+ window.scrollTo(0,0);
+
+}
+
+
+/* =========================
+ QUESTIONS
+========================= */
+
 const questions=[
-["భారతదేశ రాజధాని ఏది?","Delhi",["Mumbai","Delhi","Chennai","Kolkata"]],
-["2 + 3 = ?","5",["4","5","6","7"]],
-["Water chemical formula?","H2O",["CO2","O2","H2O","NaCl"]],
-["AP యొక్క పూర్తి పేరు?","Andhra Pradesh",["Arunachal Pradesh","Andhra Pradesh","Assam Pradesh","None"]],
-["HTML అంటే?","HyperText Markup Language",["High Text Machine Language","HyperText Markup Language","Home Tool Markup Language","None"]]
+
+[
+"భారతదేశ రాజధాని ఏది?",
+"Delhi",
+["Mumbai","Delhi","Chennai","Kolkata"]
+],
+
+[
+"2 + 3 = ?",
+"5",
+["4","5","6","7"]
+],
+
+[
+"Water chemical formula?",
+"H2O",
+["CO2","O2","H2O","NaCl"]
+],
+
+[
+"AP యొక్క పూర్తి పేరు?",
+"Andhra Pradesh",
+[
+"Arunachal Pradesh",
+"Andhra Pradesh",
+"Assam Pradesh",
+"None"
+]
+],
+
+[
+"HTML అంటే?",
+"HyperText Markup Language",
+[
+"High Text Machine Language",
+"HyperText Markup Language",
+"Home Tool Markup Language",
+"None"
+]
+
+]
+
 ];
-function page(id){document.querySelectorAll("section").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");scrollTo(0,0)}
-function build(){document.getElementById("classGrid").innerHTML=Array.from({length:10},(_,i)=>`<div class="card"><h3>${i+1}th Class</h3><p>Maths • Science • English • Telugu</p><button onclick="alert('${i+1}th Class content త్వరలో add చేయవచ్చు')">Open</button></div>`).join("");
-document.getElementById("quiz").innerHTML=questions.map((q,i)=>`<div style="margin:18px 0"><b>${i+1}. ${q[0]}</b>${q[2].map(o=>`<label style="display:block;margin:7px"><input type="radio" name="q${i}" value="${o}"> ${o}</label>`).join("")}</div>`).join("")}
-function submitQuiz(){let n=0;questions.forEach((q,i)=>{let a=document.querySelector(`input[name=q${i}]:checked`);if(a&&a.value===q[1])n++});localStorage.setItem("lastScore",n+"/"+questions.length);document.getElementById("score").innerHTML="<b>Your Score: "+n+"/"+questions.length+"</b>";document.getElementById("myResult").innerText="Last Score: "+n+"/"+questions.length}
-function login(){let r=document.getElementById("role").value,u=document.getElementById("uid").value,p=document.getElementById("pwd").value;
-if(!u||!p){document.getElementById("loginMsg").innerText="User ID మరియు Password ఇవ్వండి.";return}
-if(r==="admin"&&u==="admin"&&p==="admin123"){localStorage.setItem("role","admin");page("admin")}
-else if(r==="student"&&u==="student"&&p==="student123"){localStorage.setItem("role","student");page("student")}
-else document.getElementById("loginMsg").innerText="Invalid Login. Demo: Admin/admin123 లేదా Student/student123";}
-function logout(){localStorage.removeItem("role");page("home")}
-build();
+
+
+/* =========================
+ BUILD CLASSES
+========================= */
+
+function buildClasses(){
+
+ const grid=document.getElementById("classGrid");
+
+ let html="";
+
+ for(let i=1;i<=10;i++){
+
+   html+=`
+
+   <div class="card">
+
+   <h3>📚 ${i}th Class</h3>
+
+   <p>Maths • Science • English • Telugu</p>
+
+   <button onclick="alert('Class content త్వరలో add చేయబడుతుంది')">
+   Open
+   </button>
+
+   </div>
+
+   `;
+
+ }
+
+ grid.innerHTML=html;
+
+}
+
+
+/* =========================
+ BUILD QUIZ
+========================= */
+
+function buildQuiz(){
+
+ const quiz=document.getElementById("quiz");
+
+ let html="";
+
+ questions.forEach(function(q,i){
+
+   html+=`
+
+   <div style="margin:20px 0">
+
+   <b>${i+1}. ${q[0]}</b>
+
+   ${q[2].map(function(option){
+
+      return `
+
+      <label style="display:block;margin:8px">
+
+      <input
+      type="radio"
+      name="question${i}"
+      value="${option}">
+
+      ${option}
+
+      </label>
+
+      `;
+
+   }).join("")}
+
+   </div>
+
+   `;
+
+ });
+
+ quiz.innerHTML=html;
+
+}
+
+
+/* =========================
+ SUBMIT TEST
+========================= */
+
+function submitQuiz(){
+
+ let score=0;
+
+ questions.forEach(function(q,i){
+
+   const answer=document.querySelector(
+   'input[name="question'+i+'"]:checked'
+   );
+
+   if(answer && answer.value===q[1]){
+
+     score++;
+
+   }
+
+ });
+
+ document.getElementById("score").innerHTML=
+ "<b>Your Score: "+score+"/"+questions.length+"</b>";
+
+ document.getElementById("studentResult").innerText=
+ "Last Score: "+score+"/"+questions.length;
+
+ localStorage.setItem(
+ "lastScore",
+ score+"/"+questions.length
+ );
+
+}
+
+
+/* =========================
+ LOGIN
+========================= */
+
+function doLogin(){
+
+ const type=
+ document.getElementById("loginType").value;
+
+ const user=
+ document.getElementById("userId").value.trim();
+
+ const pass=
+ document.getElementById("password").value;
+
+ const msg=
+ document.getElementById("loginMessage");
+
+
+ if(user==="" || pass===""){
+
+   msg.innerText=
+   "⚠️ User ID మరియు Password ఇవ్వండి.";
+
+   return;
+
+ }
+
+
+/*
+ ADMIN LOGIN
+
+ User ID:
+ 8331905341
+
+ Password:
+ Bhasa@1234
+*/
+
+ if(
+ type==="admin" &&
+ user==="8331905341" &&
+ pass==="Bhasa@1234"
+ ){
+
+   localStorage.setItem("loginRole","admin");
+
+   msg.innerText="✅ Login Successful";
+
+   setTimeout(function(){
+
+     showPage("admin");
+
+   },500);
+
+   return;
+
+ }
+
+
+/*
+ STUDENT DEMO LOGIN
+*/
+
+ if(
+ type==="student" &&
+ user==="student" &&
+ pass==="student123"
+ ){
+
+   localStorage.setItem("loginRole","student");
+
+   msg.innerText="✅ Login Successful";
+
+   setTimeout(function(){
+
+     showPage("student");
+
+   },500);
+
+   return;
+
+ }
+
+
+ msg.innerText=
+ "❌ Invalid User ID లేదా Password.";
+
+}
+
+
+/* =========================
+ LOGOUT
+========================= */
+
+function logout(){
+
+ localStorage.removeItem("loginRole");
+
+ showPage("home");
+
+}
+
+
+/* =========================
+ START
+========================= */
+
+buildClasses();
+
+buildQuiz();
+
 </script>
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import {
-    getAuth,
-    signInWithEmailAndPassword
-  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyAIG-hAP6U82xuFl1lZq3zocu3Z0eXWnFc",
-    authDomain: "self-study-centre-d-8f23c.firebaseapp.com",
-    projectId: "self-study-centre-d-8f23c",
-    storageBucket: "self-study-centre-d-8f23c.firebasestorage.app",
-    messagingSenderId: "168365780150",
-    appId: "1:168365780150:web:fea063805670156eca0a17",
-    measurementId: "G-0P8BT5N1J8"
-  };
-
-  const app = init
-
-  
+</body>
+</html>
