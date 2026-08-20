@@ -4,177 +4,281 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>RRB Group D Biology & Science Test 02</title>
+<title>RRB Group D Biology Test 02</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+}
 
 body{
-margin:0;
-font-family:Arial,"Noto Sans Telugu",sans-serif;
-background:#f3f6fb;
-color:#172033;
+  margin:0;
+  font-family:Arial,"Noto Sans Telugu",sans-serif;
+  background:#f3f6fb;
+  color:#172033;
 }
 
 header{
-background:linear-gradient(135deg,#123b8f,#2563eb);
-color:white;
-padding:18px;
-text-align:center;
-position:sticky;
-top:0;
-z-index:10;
+  background:linear-gradient(135deg,#123b8f,#2563eb);
+  color:white;
+  padding:18px;
+  text-align:center;
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 
 header h1{
-margin:0 0 8px;
-font-size:22px;
+  margin:0 0 8px;
+  font-size:22px;
 }
 
 .info{
-display:flex;
-justify-content:center;
-gap:12px;
-flex-wrap:wrap;
-font-size:14px;
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  font-size:14px;
 }
 
 .badge{
-background:white;
-color:#173b8f;
-padding:6px 10px;
-border-radius:20px;
-font-weight:bold;
+  background:white;
+  color:#173b8f;
+  padding:6px 10px;
+  border-radius:20px;
+  font-weight:bold;
 }
 
 .timer{
-background:#dc3545;
-color:white;
-padding:6px 12px;
-border-radius:20px;
-font-weight:bold;
+  background:#dc3545;
+  color:white;
+  padding:6px 12px;
+  border-radius:20px;
+  font-weight:bold;
 }
 
 .container{
-max-width:1100px;
-margin:auto;
-padding:15px;
+  max-width:1200px;
+  margin:auto;
+  padding:15px;
 }
 
 .card{
-background:white;
-border-radius:14px;
-padding:18px;
-margin-bottom:15px;
-box-shadow:0 3px 12px #0001;
+  background:white;
+  border-radius:14px;
+  padding:18px;
+  margin-bottom:15px;
+  box-shadow:0 3px 12px #0001;
+}
+
+.start-card{
+  max-width:600px;
+  margin:30px auto;
+}
+
+.start-card h2{
+  text-align:center;
+  color:#123b8f;
+}
+
+.input-label{
+  display:block;
+  font-weight:bold;
+  margin-top:15px;
+}
+
+.input-box{
+  width:100%;
+  padding:13px;
+  margin-top:7px;
+  border:1px solid #ccd3df;
+  border-radius:8px;
+  font-size:16px;
+}
+
+.start-btn{
+  width:100%;
+  padding:14px;
+  margin-top:20px;
+  font-size:17px;
+  background:#198754;
+}
+
+.error{
+  color:#dc3545;
+  text-align:center;
+  font-weight:bold;
+  margin-top:12px;
+}
+
+.test-layout{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) 280px;
+  gap:15px;
+  align-items:start;
+}
+
+.question-area{
+  min-width:0;
+}
+
+.palette-card{
+  position:sticky;
+  top:90px;
 }
 
 .question{
-font-size:17px;
-font-weight:bold;
-line-height:1.6;
-margin-bottom:14px;
+  font-size:17px;
+  font-weight:bold;
+  line-height:1.7;
+  margin-bottom:14px;
 }
 
 .option{
-display:block;
-background:#f7f9fc;
-border:1px solid #d8dee8;
-padding:11px;
-margin:8px 0;
-border-radius:9px;
-cursor:pointer;
+  display:block;
+  background:#f7f9fc;
+  border:1px solid #d8dee8;
+  padding:12px;
+  margin:8px 0;
+  border-radius:9px;
+  cursor:pointer;
+  line-height:1.5;
 }
 
 .option:hover{
-background:#eaf1ff;
+  background:#eaf1ff;
 }
 
 .option input{
-margin-right:8px;
+  margin-right:8px;
 }
 
 .buttons{
-display:flex;
-gap:8px;
-flex-wrap:wrap;
-margin-top:15px;
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+  margin-top:15px;
 }
 
 button{
-border:0;
-padding:10px 15px;
-border-radius:8px;
-font-weight:bold;
-cursor:pointer;
-background:#2563eb;
-color:white;
+  border:0;
+  padding:10px 15px;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
+  background:#2563eb;
+  color:white;
 }
 
-.prev{background:#6c757d}
-.save{background:#198754}
-.review{background:#f59e0b}
-.clear{background:#dc3545}
-.submit{background:#8b1e3f}
+button:active{
+  transform:scale(.98);
+}
+
+.prev{
+  background:#6c757d;
+}
+
+.save{
+  background:#198754;
+}
+
+.review{
+  background:#f59e0b;
+}
+
+.clear{
+  background:#dc3545;
+}
+
+.submit{
+  background:#8b1e3f;
+}
 
 .palette{
-display:grid;
-grid-template-columns:repeat(8,1fr);
-gap:7px;
-margin-top:10px;
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:7px;
+  margin-top:12px;
 }
 
 .pbtn{
-padding:9px 4px;
-background:#e9ecef;
-color:#222;
+  padding:10px 4px;
+  background:#e9ecef;
+  color:#222;
 }
 
 .pbtn.answered{
-background:#198754;
-color:white;
+  background:#198754;
+  color:white;
 }
 
 .pbtn.reviewed{
-background:#f59e0b;
-color:white;
+  background:#f59e0b;
+  color:white;
+}
+
+.pbtn.current{
+  outline:3px solid #2563eb;
 }
 
 .result{
-display:none;
-background:white;
-border-radius:15px;
-padding:20px;
-margin-top:20px;
-box-shadow:0 3px 15px #0002;
+  display:none;
+  background:white;
+  border-radius:15px;
+  padding:20px;
+  margin-top:20px;
+  box-shadow:0 3px 15px #0002;
 }
 
 .correct{
-color:#198754;
-font-weight:bold;
+  color:#198754;
+  font-weight:bold;
 }
 
 .wrong{
-color:#dc3545;
-font-weight:bold;
+  color:#dc3545;
+  font-weight:bold;
 }
 
 .explanation{
-background:#f1f7ff;
-padding:12px;
-border-left:4px solid #2563eb;
-margin-top:8px;
-border-radius:5px;
+  background:#f1f7ff;
+  padding:12px;
+  border-left:4px solid #2563eb;
+  margin-top:8px;
+  border-radius:5px;
+  line-height:1.6;
 }
 
-.hidden{
-display:none;
+.student-info{
+  background:#eef5ff;
+  padding:12px;
+  border-radius:8px;
+  margin-bottom:15px;
 }
 
-@media(max-width:600px){
-header h1{font-size:18px}
-.question{font-size:16px}
-.palette{grid-template-columns:repeat(5,1fr)}
+@media(max-width:700px){
+
+  header h1{
+    font-size:18px;
+  }
+
+  .test-layout{
+    grid-template-columns:1fr;
+  }
+
+  .palette-card{
+    position:static;
+    order:-1;
+  }
+
+  .question{
+    font-size:16px;
+  }
+
+  .buttons button{
+    flex:1 1 auto;
+  }
+
 }
 </style>
 </head>
@@ -183,63 +287,181 @@ header h1{font-size:18px}
 
 <header>
 
-<h1>🚆 RRB GROUP D - TEST 02</h1>
+<h1>🚆 RRB GROUP D - BIOLOGY TEST 02</h1>
 
 <div class="info">
+
 <span class="badge">📝 25 Questions</span>
+
 <span class="badge">🎯 25 Marks</span>
+
 <span class="badge">🇮🇳 Telugu + 🇬🇧 English</span>
-<span class="timer">⏱️ <span id="timer">20:00</span></span>
+
+<span class="timer">
+⏱️ <span id="timer">20:00</span>
+</span>
+
 </div>
 
 </header>
 
+
 <div class="container">
+
+
+<!-- STUDENT START SCREEN -->
+
+<div id="studentStart" class="card start-card">
+
+<h2>🚆 RRB GROUP D</h2>
+
+<h3 style="text-align:center;">
+🧬 BIOLOGY TEST 02
+</h3>
+
+<label class="input-label">
+👤 Student Name
+</label>
+
+<input
+  id="studentName"
+  class="input-box"
+  type="text"
+  placeholder="Enter Student Name"
+>
+
+<label class="input-label">
+📱 Phone Number
+</label>
+
+<input
+  id="studentPhone"
+  class="input-box"
+  type="tel"
+  maxlength="10"
+  placeholder="Enter 10 digit Phone Number"
+>
+
+<button
+  class="start-btn"
+  onclick="startExam()"
+>
+▶️ Start Exam
+</button>
+
+<p id="startError" class="error"></p>
+
+</div>
+
+
+<!-- EXAM AREA -->
+
+<div id="examArea" style="display:none;">
+
+<div class="test-layout">
+
+
+<!-- QUESTIONS -->
+
+<div class="question-area">
+
+<div id="studentInfo" class="student-info"></div>
+
+<div id="quiz"></div>
+
 
 <div class="card">
 
+<div class="buttons">
+
+<button
+  class="prev"
+  onclick="previousQuestion()"
+>
+↩️ Previous
+</button>
+
+<button
+  class="save"
+  onclick="saveNext()"
+>
+✅ Save & Next
+</button>
+
+<button
+  class="review"
+  onclick="markReview()"
+>
+🔖 Mark for Review
+</button>
+
+<button
+  class="clear"
+  onclick="clearResponse()"
+>
+🧹 Clear Response
+</button>
+
+<button
+  class="submit"
+  onclick="confirmSubmit()"
+>
+📤 Submit Test
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+<!-- RIGHT QUESTION PALETTE -->
+
+<div class="card palette-card">
+
 <h3>📋 Question Palette</h3>
 
-<p>
-🟢 Answered &nbsp;
-🟠 Mark for Review &nbsp;
-⚪ Not Answered
+<p style="font-size:13px;line-height:1.8;">
+
+🟢 Answered<br>
+
+🟠 Mark for Review<br>
+
+⚪ Not Answered<br>
+
+🔵 Current Question
+
 </p>
 
 <div id="palette" class="palette"></div>
 
 </div>
 
-<div id="quiz"></div>
-
-<div class="card">
-
-<div class="buttons">
-
-<button class="prev" onclick="previousQuestion()">↩️ Previous</button>
-
-<button class="save" onclick="saveNext()">✅ Save & Next</button>
-
-<button class="review" onclick="markReview()">🔖 Mark for Review</button>
-
-<button class="clear" onclick="clearResponse()">🧹 Clear Response</button>
-
-<button class="submit" onclick="confirmSubmit()">📤 Submit Test</button>
-
 </div>
 
 </div>
+
+
+<!-- RESULT -->
 
 <div id="result" class="result"></div>
 
+
 </div>
 
+
 <script>
+
+
+/* =========================
+   QUESTIONS
+========================= */
 
 const questions = [
 
 {
-q:"Q.1 కింది వాటిలో, ఒక పతం యొక్క అంచు వెంబడి మొగ్గీకరణం ద్వారా అలైంగికంగా పునరుత్పత్తి చేసే మొక్క ఏది?<br><br>Which of the following reproduces asexually by budding?",
+q:"Q.1 కింది వాటిలో, ఒక మొక్క యొక్క అంచు వెంబడి మొగ్గీకరణం ద్వారా అలైంగికంగా పునరుత్పత్తి చేసే జీవి ఏది?<br><br>Which of the following reproduces asexually by budding?",
 options:[
 "బయోఫైలమ్ / Bryophyllum",
 "రోగైరా / Rhizopus",
@@ -247,7 +469,7 @@ options:[
 "మామిడి / Mango"
 ],
 ans:2,
-exp:"హైడ్రా మొగ్గీకరణం ద్వారా అలైంగికంగా పునరుత్పత్తి చేస్తుంది."
+exp:"హైడ్రా మొగ్గీకరణం (Budding) ద్వారా అలైంగికంగా పునరుత్పత్తి చేస్తుంది."
 },
 
 {
@@ -259,7 +481,7 @@ options:[
 "ఎయిడ్స్ / AIDS"
 ],
 ans:3,
-exp:"HIV సంక్రమణ వల్ల AIDS వస్తుంది. ఇది లైంగిక సంపర్కం ద్వారా సంక్రమించవచ్చు."
+exp:"HIV సంక్రమణ వల్ల AIDS వస్తుంది. HIV లైంగిక సంపర్కం ద్వారా సంక్రమించవచ్చు."
 },
 
 {
@@ -367,7 +589,7 @@ options:[
 "నీరు / Water"
 ],
 ans:2,
-exp:"నిమ్మరసంలో సిట్రిక్ ఆమ్లం ఉంటుంది మరియు సాధారణంగా ఇచ్చిన ఎంపికల్లో ఎక్కువ ఆమ్లత్వం ఉంటుంది."
+exp:"నిమ్మరసంలో సిట్రిక్ ఆమ్లం ఉంటుంది మరియు ఇచ్చిన ఎంపికల్లో ఎక్కువ ఆమ్లత్వం కలిగి ఉంటుంది."
 },
 
 {
@@ -427,7 +649,7 @@ options:[
 "ప్రాథమిక వినియోగదారులు / Primary consumers"
 ],
 ans:0,
-exp:"ఆహార గొలుసులో పై స్థాయికి వెళ్లే కొద్దీ జీవుల సంఖ్య సాధారణంగా తగ్గుతుంది."
+exp:"ఆహార గొలుసులో పై స్థాయికి వెళ్లే కొద్దీ సాధారణంగా జీవుల సంఖ్య తగ్గుతుంది."
 },
 
 {
@@ -439,7 +661,7 @@ options:[
 "వాయువులోని ద్రవం / Liquid in gas"
 ],
 ans:1,
-exp:"వాయువుల కణాలు ఎక్కువ వేగంతో కదలడం వల్ల వాయువుల్లో వ్యాప్తి వేగంగా జరుగుతుంది."
+exp:"వాయువుల కణాలు వేగంగా కదలడం వల్ల వాయువుల్లో వ్యాప్తి వేగంగా జరుగుతుంది."
 },
 
 {
@@ -499,7 +721,7 @@ options:[
 "−40 cm"
 ],
 ans:1,
-exp:"f = R/2 = 40/2 = +20 cm."
+exp:"దర్పణానికి f = R/2. కాబట్టి f = 40/2 = +20 cm."
 },
 
 {
@@ -511,7 +733,7 @@ options:[
 "CaSO4"
 ],
 ans:0,
-exp:"CO2 + Ca(OH)2 → CaCO3↓ + H2O. కాబట్టి కాల్షియం కార్బోనేట్ అవక్షేపం ఏర్పడుతుంది."
+exp:"CO₂ + Ca(OH)₂ → CaCO₃↓ + H₂O. కాబట్టి Calcium Carbonate అవక్షేపం ఏర్పడుతుంది."
 },
 
 {
@@ -523,7 +745,7 @@ options:[
 "ప్రొపైన్ / Propyne"
 ],
 ans:0,
-exp:"2-Bromopropaneలో C-C మధ్య single bonds మాత్రమే ఉంటాయి. కాబట్టి ఇది saturated compound."
+exp:"2-Bromopropaneలో C-C మధ్య single bond మాత్రమే ఉంటుంది. కాబట్టి ఇది saturated compound."
 },
 
 {
@@ -540,337 +762,593 @@ exp:"Electrical Energy = Power × Time."
 
 ];
 
-let current=0;
-let answers=new Array(25).fill(null);
-let review=new Array(25).fill(false);
-let submitted=false;
 
-let time=20*60;
+/* =========================
+   VARIABLES
+========================= */
+
+let current = 0;
+
+let answers = new Array(25).fill(null);
+
+let review = new Array(25).fill(false);
+
+let submitted = false;
+
+let time = 20 * 60;
+
+let timerInterval;
+
+
+/* =========================
+   START EXAM
+========================= */
+
+function startExam(){
+
+  const name =
+    document.getElementById("studentName").value.trim();
+
+  const phone =
+    document.getElementById("studentPhone").value.trim();
+
+  const error =
+    document.getElementById("startError");
+
+  if(name === ""){
+    error.innerText =
+      "⚠️ Student Name enter చేయండి";
+    return;
+  }
+
+  if(!/^[0-9]{10}$/.test(phone)){
+    error.innerText =
+      "⚠️ సరైన 10 digit Phone Number enter చేయండి";
+    return;
+  }
+
+  localStorage.setItem(
+    "biologyTest02Name",
+    name
+  );
+
+  localStorage.setItem(
+    "biologyTest02Phone",
+    phone
+  );
+
+  document.getElementById(
+    "studentStart"
+  ).style.display = "none";
+
+  document.getElementById(
+    "examArea"
+  ).style.display = "block";
+
+  document.getElementById(
+    "studentInfo"
+  ).innerHTML =
+    "<b>👤 Student:</b> " +
+    escapeHTML(name) +
+    " &nbsp;&nbsp; " +
+    "<b>📱 Phone:</b> " +
+    escapeHTML(phone);
+
+  current = 0;
+
+  render();
+
+  startTimer();
+
+}
+
+
+/* =========================
+   SAFE TEXT
+========================= */
+
+function escapeHTML(text){
+
+  return text
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* =========================
+   RENDER QUESTION
+========================= */
 
 function render(){
 
-let q=questions[current];
+  if(submitted) return;
 
-document.getElementById("quiz").innerHTML=`
+  const q = questions[current];
 
-<div class="card">
+  document.getElementById("quiz").innerHTML = `
 
-<div class="question">
-${q.q}
-</div>
+  <div class="card">
 
-${q.options.map((op,i)=>`
+    <div class="question">
+      ${q.q}
+    </div>
 
-<label class="option">
+    ${q.options.map((op,i)=>`
 
-<input type="radio"
-name="answer"
-value="${i}"
-${answers[current]===i?"checked":""}
-onchange="selectAnswer(${i})">
+      <label class="option">
 
-${String.fromCharCode(65+i)}. ${op}
+        <input
+          type="radio"
+          name="answer"
+          value="${i}"
+          ${answers[current]===i ? "checked" : ""}
+          onchange="selectAnswer(${i})"
+        >
 
-</label>
+        ${String.fromCharCode(65+i)}. ${op}
 
-`).join("")}
+      </label>
 
-<div class="buttons">
+    `).join("")}
 
-<button class="prev" onclick="previousQuestion()">
-↩️ Previous
-</button>
+  </div>
 
-<button class="save" onclick="saveNext()">
-✅ Save & Next
-</button>
+  `;
 
-<button class="review" onclick="markReview()">
-🔖 Mark for Review
-</button>
+  updatePalette();
 
-<button class="clear" onclick="clearResponse()">
-🧹 Clear Response
-</button>
-
-</div>
-
-</div>
-`;
-
-updatePalette();
-
-window.scrollTo(0,0);
+  window.scrollTo(0,0);
 
 }
+
+
+/* =========================
+   SELECT ANSWER
+========================= */
 
 function selectAnswer(i){
 
-answers[current]=i;
+  answers[current] = i;
 
-updatePalette();
+  updatePalette();
 
 }
+
+
+/* =========================
+   SAVE NEXT
+========================= */
 
 function saveNext(){
 
-if(current<24){
+  if(current < 24){
 
-current++;
+    current++;
 
-render();
+    render();
 
-}else{
+  }else{
 
-confirmSubmit();
+    confirmSubmit();
+
+  }
 
 }
 
-}
+
+/* =========================
+   PREVIOUS
+========================= */
 
 function previousQuestion(){
 
-if(current>0){
+  if(current > 0){
 
-current--;
+    current--;
 
-render();
+    render();
+
+  }
 
 }
 
-}
+
+/* =========================
+   MARK REVIEW
+========================= */
 
 function markReview(){
 
-review[current]=true;
+  review[current] = true;
 
-if(current<24){
+  if(current < 24){
 
-current++;
+    current++;
+
+  }
+
+  render();
 
 }
 
-render();
 
-}
+/* =========================
+   CLEAR
+========================= */
 
 function clearResponse(){
 
-answers[current]=null;
+  answers[current] = null;
 
-review[current]=false;
+  review[current] = false;
 
-render();
+  render();
 
 }
+
+
+/* =========================
+   PALETTE
+========================= */
 
 function updatePalette(){
 
-let html="";
+  let html = "";
 
-for(let i=0;i<25;i++){
+  for(let i=0;i<25;i++){
 
-let cls="pbtn";
+    let cls = "pbtn";
 
-if(review[i]) cls+=" reviewed";
+    if(review[i]){
 
-else if(answers[i]!==null) cls+=" answered";
+      cls += " reviewed";
 
-html+=`
+    }else if(answers[i] !== null){
 
-<button class="${cls}" onclick="goQuestion(${i})">
-${i+1}
-</button>
+      cls += " answered";
 
-`;
+    }
+
+    if(i === current){
+
+      cls += " current";
+
+    }
+
+    html += `
+
+      <button
+        class="${cls}"
+        onclick="goQuestion(${i})"
+      >
+        ${i+1}
+      </button>
+
+    `;
+
+  }
+
+  document.getElementById(
+    "palette"
+  ).innerHTML = html;
 
 }
 
-document.getElementById("palette").innerHTML=html;
 
-}
+/* =========================
+   GO QUESTION
+========================= */
 
 function goQuestion(i){
 
-current=i;
+  if(submitted) return;
 
-render();
+  current = i;
+
+  render();
 
 }
+
+
+/* =========================
+   CONFIRM SUBMIT
+========================= */
 
 function confirmSubmit(){
 
-if(submitted)return;
+  if(submitted) return;
 
-let unanswered=answers.filter(x=>x===null).length;
+  const unanswered =
+    answers.filter(x => x === null).length;
 
-if(confirm(
+  const message =
+    "Exam Submit చేయాలా?\n\n" +
 
-"Exam Submit చేయాలా?\n\n"+
-"Answered: "+(25-unanswered)+
-"\nNot Answered: "+unanswered+
+    "Answered: " +
+    (25-unanswered) +
 
-"\n\nSubmit చేయడానికి OK నొక్కండి."
+    "\nNot Answered: " +
+    unanswered +
 
-)){
+    "\n\nSubmit చేయడానికి OK నొక్కండి.";
 
-submitTest();
+  if(confirm(message)){
+
+    submitTest();
+
+  }
 
 }
 
-}
+
+/* =========================
+   SUBMIT
+========================= */
 
 function submitTest(){
 
-submitted=true;
+  if(submitted) return;
 
-clearInterval(timerInterval);
+  submitted = true;
 
-let correct=0;
-let wrong=0;
+  clearInterval(timerInterval);
 
-answers.forEach((a,i)=>{
+  let correct = 0;
 
-if(a===null)return;
+  let wrong = 0;
 
-if(a===questions[i].ans)
-correct++;
-else
-wrong++;
+  answers.forEach((a,i)=>{
 
-});
+    if(a === null) return;
 
-let marks=correct-(wrong/3);
+    if(a === questions[i].ans){
 
-marks=Math.max(0,marks);
+      correct++;
 
-let percentage=(marks/25)*100;
+    }else{
 
-let html=`
+      wrong++;
 
-<h2>📊 Test Result</h2>
+    }
 
-<h3>RRB GROUP D - TEST 02</h3>
+  });
 
-<p>📝 Total Questions: <b>25</b></p>
 
-<p class="correct">
-✅ Correct: ${correct}
-</p>
+  let notAnswered =
+    25 - correct - wrong;
 
-<p class="wrong">
-❌ Wrong: ${wrong}
-</p>
 
-<p>
-⚪ Not Answered: ${25-correct-wrong}
-</p>
+  let marks =
+    correct - (wrong / 3);
 
-<p>
-🎯 Marks: <b>${marks.toFixed(2)} / 25</b>
-</p>
 
-<p>
-📈 Percentage: <b>${percentage.toFixed(2)}%</b>
-</p>
+  if(marks < 0){
 
-<hr>
+    marks = 0;
 
-<h2>📖 Explanations</h2>
+  }
 
-`;
 
-questions.forEach((q,i)=>{
+  let percentage =
+    (marks / 25) * 100;
 
-let user=answers[i];
 
-let status="Not Answered";
+  const name =
+    localStorage.getItem(
+      "biologyTest02Name"
+    ) || "";
 
-if(user!==null){
 
-if(user===q.ans)
-status='<span class="correct">✅ Correct</span>';
-else
-status='<span class="wrong">❌ Wrong</span>';
+  let html = `
+
+    <h2>📊 Test Result</h2>
+
+    <h3>🚆 RRB GROUP D - BIOLOGY TEST 02</h3>
+
+    <div class="student-info">
+
+      👤 <b>Student:</b> ${escapeHTML(name)}
+
+    </div>
+
+    <p>
+      📝 Total Questions:
+      <b>25</b>
+    </p>
+
+    <p class="correct">
+      ✅ Correct:
+      ${correct}
+    </p>
+
+    <p class="wrong">
+      ❌ Wrong:
+      ${wrong}
+    </p>
+
+    <p>
+      ⚪ Not Answered:
+      ${notAnswered}
+    </p>
+
+    <p>
+      ❌ Negative Marking:
+      <b>−1/3</b>
+    </p>
+
+    <p>
+      🎯 Marks:
+      <b>${marks.toFixed(2)} / 25</b>
+    </p>
+
+    <p>
+      📈 Percentage:
+      <b>${percentage.toFixed(2)}%</b>
+    </p>
+
+    <hr>
+
+    <h2>📖 Explanations</h2>
+
+  `;
+
+
+  questions.forEach((q,i)=>{
+
+    const user = answers[i];
+
+    let statusHTML =
+      "⚪ Not Answered";
+
+    if(user !== null){
+
+      if(user === q.ans){
+
+        statusHTML =
+          '<span class="correct">✅ Correct</span>';
+
+      }else{
+
+        statusHTML =
+          '<span class="wrong">❌ Wrong</span>';
+
+      }
+
+    }
+
+
+    html += `
+
+      <div class="card">
+
+        <h3>Q.${i+1}</h3>
+
+        <p>
+          ${q.q}
+        </p>
+
+        <p>
+          <b>Your Answer:</b><br>
+          ${
+            user === null
+            ? "Not Answered"
+            : String.fromCharCode(65+user)
+              + ". "
+              + q.options[user]
+          }
+        </p>
+
+        <p>
+
+          <b>Correct Answer:</b><br>
+
+          <span class="correct">
+
+            ${String.fromCharCode(65+q.ans)}.
+            ${q.options[q.ans]}
+
+          </span>
+
+        </p>
+
+        <p>
+          ${statusHTML}
+        </p>
+
+        <div class="explanation">
+
+          <b>💡 Explanation:</b><br>
+
+          ${q.exp}
+
+        </div>
+
+      </div>
+
+    `;
+
+  });
+
+
+  document.getElementById(
+    "result"
+  ).innerHTML = html;
+
+
+  document.getElementById(
+    "result"
+  ).style.display = "block";
+
+
+  document.getElementById(
+    "examArea"
+  ).style.display = "none";
+
+
+  window.scrollTo(0,0);
+
 }
 
-html+=`
 
-<div class="card">
+/* =========================
+   TIMER
+========================= */
 
-<h3>Q.${i+1}</h3>
+function startTimer(){
 
-<p>${q.q}</p>
+  clearInterval(timerInterval);
 
-<p>
-<b>Your Answer:</b>
-${user===null?"Not Answered":q.options[user]}
-</p>
+  time = 20 * 60;
 
-<p>
-<b>Correct Answer:</b>
-<span class="correct">
-${String.fromCharCode(65+q.ans)}. ${q.options[q.ans]}
-</span>
-</p>
+  updateTimer();
 
-<p>${status}</p>
-
-<div class="explanation">
-
-<b>💡 Explanation:</b><br>
-
-${q.exp}
-
-</div>
-
-</div>
-
-`;
-
-});
-
-document.getElementById("result").innerHTML=html;
-
-document.getElementById("result").style.display="block";
-
-document.getElementById("quiz").style.display="none";
-
-document.querySelector(".container").scrollIntoView();
+  timerInterval =
+    setInterval(updateTimer,1000);
 
 }
+
 
 function updateTimer(){
 
-let min=Math.floor(time/60);
+  let min =
+    Math.floor(time / 60);
 
-let sec=time%60;
+  let sec =
+    time % 60;
 
-document.getElementById("timer").innerText=
 
-String(min).padStart(2,"0")+":"+
+  document.getElementById(
+    "timer"
+  ).innerText =
 
-String(sec).padStart(2,"0");
+    String(min).padStart(2,"0")
+    + ":"
+    +
+    String(sec).padStart(2,"0");
 
-if(time<=0){
 
-clearInterval(timerInterval);
+  if(time <= 0){
 
-alert("⏰ Time అయిపోయింది. Test automatically submitted.");
+    clearInterval(timerInterval);
 
-submitTest();
+    alert(
+      "⏰ Time అయిపోయింది. Test automatically submitted."
+    );
+
+    submitTest();
+
+    return;
+
+  }
+
+  time--;
 
 }
 
-time--;
-
-}
-
-let timerInterval=setInterval(updateTimer,1000);
-
-updateTimer();
-
-render();
 
 </script>
 
